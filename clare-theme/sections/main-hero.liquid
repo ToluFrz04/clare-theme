@@ -1,0 +1,99 @@
+<section class="hero">
+  {% if section.settings.image != blank %}
+    <img
+      class="hero-image"
+      src="{{ section.settings.image | image_url: width: 2000 }}"
+      alt="{{ section.settings.image.alt | escape }}"
+      loading="eager"
+      width="2000"
+      height="1000"
+    >
+  {% else %}
+    <div class="hero-image" style="background: linear-gradient(135deg, #2C2C2C 0%, #4A4035 100%);"></div>
+  {% endif %}
+
+  <div class="hero-overlay"></div>
+
+  <div class="hero-content container">
+    {% if section.settings.eyebrow != blank %}
+      <p class="hero-eyebrow">{{ section.settings.eyebrow }}</p>
+    {% endif %}
+
+    <h1 class="hero-title">{{ section.settings.title }}</h1>
+
+    {% if section.settings.subtitle != blank %}
+      <p class="hero-subtitle">{{ section.settings.subtitle }}</p>
+    {% endif %}
+
+    <div style="display:flex; gap:1rem; flex-wrap:wrap;">
+      {% if section.settings.btn_primary_label != blank %}
+        <a href="{{ section.settings.btn_primary_url }}" class="btn btn-primary">
+          {{ section.settings.btn_primary_label }}
+        </a>
+      {% endif %}
+      {% if section.settings.btn_secondary_label != blank %}
+        <a href="{{ section.settings.btn_secondary_url }}" class="btn btn-outline">
+          {{ section.settings.btn_secondary_label }}
+        </a>
+      {% endif %}
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Hero Banner",
+  "settings": [
+    {
+      "type": "image_picker",
+      "id": "image",
+      "label": "Hero-Bild"
+    },
+    {
+      "type": "text",
+      "id": "eyebrow",
+      "label": "Kleiner Text oben",
+      "default": "Neue Kollektion · Sommer 2025"
+    },
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Hauptüberschrift",
+      "default": "Mode, die\nGeschichten erzählt"
+    },
+    {
+      "type": "text",
+      "id": "subtitle",
+      "label": "Untertitel",
+      "default": "Kuratierte Styles für die moderne Frau. Zeitlos, elegant, unverwechselbar."
+    },
+    {
+      "type": "text",
+      "id": "btn_primary_label",
+      "label": "Button 1 Text",
+      "default": "Kollektion entdecken"
+    },
+    {
+      "type": "url",
+      "id": "btn_primary_url",
+      "label": "Button 1 Link"
+    },
+    {
+      "type": "text",
+      "id": "btn_secondary_label",
+      "label": "Button 2 Text",
+      "default": "Neuheiten ansehen"
+    },
+    {
+      "type": "url",
+      "id": "btn_secondary_url",
+      "label": "Button 2 Link"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Hero Banner"
+    }
+  ]
+}
+{% endschema %}

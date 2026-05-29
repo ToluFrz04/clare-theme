@@ -1,0 +1,27 @@
+{
+  "general": {
+    "password_page": {
+      "title": "Bald verfügbar"
+    }
+  },
+  "accessibility": {
+    "refresh_page": "Seite wurde aktualisiert",
+    "link_messages": {
+      "new_window": "Öffnet in einem neuen Fenster"
+    }
+  },
+  "products": {
+    "product": {
+      "add_to_cart": "In den Warenkorb",
+      "sold_out": "Ausverkauft",
+      "unavailable": "Nicht verfügbar"
+    }
+  },
+  "cart": {
+    "general": {
+      "title": "Warenkorb",
+      "empty": "Dein Warenkorb ist leer.",
+      "checkout": "Zur Kasse"
+    }
+  }
+}

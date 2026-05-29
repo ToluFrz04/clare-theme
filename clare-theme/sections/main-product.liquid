@@ -1,0 +1,122 @@
+{% assign product = product %}
+
+<div class="container">
+  <div class="product-detail">
+
+    {%- comment -%} Gallery {%- endcomment -%}
+    <div class="product-gallery">
+      <div class="product-gallery-main">
+        <img
+          src="{{ product.featured_image | image_url: width: 900 }}"
+          alt="{{ product.featured_image.alt | escape }}"
+          id="MainProductImage"
+          width="900"
+          height="1200"
+          loading="eager"
+        >
+      </div>
+
+      {% if product.images.size > 1 %}
+        <div class="product-gallery-thumbs">
+          {% for image in product.images limit: 4 %}
+            <div class="product-gallery-thumb {% if forloop.first %}active{% endif %}">
+              <img
+                src="{{ image | image_url: width: 300 }}"
+                alt="{{ image.alt | escape }}"
+                width="300"
+                height="400"
+                loading="lazy"
+              >
+            </div>
+          {% endfor %}
+        </div>
+      {% endif %}
+    </div>
+
+    {%- comment -%} Product Info {%- endcomment -%}
+    <div class="product-info">
+      <p class="product-info-vendor">{{ product.vendor }}</p>
+      <h1 class="product-info-title">{{ product.title }}</h1>
+
+      <div class="product-info-price">
+        {{ product.price | money }}
+        {% if product.compare_at_price > product.price %}
+          <span class="compare">{{ product.compare_at_price | money }}</span>
+        {% endif %}
+      </div>
+      <p class="product-info-tax">Inkl. MwSt. · zzgl. Versandkosten</p>
+
+      {% form 'product', product, class: 'product-add-form' %}
+        <input type="hidden" name="id" value="{{ product.selected_or_first_available_variant.id }}">
+
+        {% for option in product.options_with_values %}
+          <div class="product-option">
+            <div class="product-option-label">{{ option.name }}</div>
+            <div class="product-option-values">
+              {% for value in option.values %}
+                <button type="button" class="product-option-btn {% if forloop.first %}selected{% endif %}" data-value="{{ value }}">
+                  {{ value }}
+                </button>
+              {% endfor %}
+            </div>
+          </div>
+        {% endfor %}
+
+        <div class="product-option" style="margin-bottom:1.5rem;">
+          <div class="product-option-label">Menge</div>
+          <div style="display:flex; align-items:center; gap:0; border:1px solid var(--color-border); width:fit-content;">
+            <button type="button" class="qty-btn" data-action="dec" style="width:42px;height:42px;font-size:1.2rem;background:none;border:none;cursor:pointer;">−</button>
+            <input type="number" name="quantity" value="1" min="1" class="qty-input" style="width:50px;text-align:center;border:none;border-left:1px solid var(--color-border);border-right:1px solid var(--color-border);height:42px;padding:0;">
+            <button type="button" class="qty-btn" data-action="inc" style="width:42px;height:42px;font-size:1.2rem;background:none;border:none;cursor:pointer;">+</button>
+          </div>
+        </div>
+
+        <button type="submit" name="add" class="product-add-btn">
+          In den Warenkorb
+        </button>
+
+        <a href="{{ routes.cart_url }}" class="btn btn-outline" style="width:100%;justify-content:center;color:var(--color-foreground);border-color:var(--color-border);margin-top:0.75rem;">
+          Sofort kaufen
+        </a>
+      {% endform %}
+
+      <div class="product-meta">
+        <div class="product-meta-item">
+          <span class="product-meta-icon">🚚</span>
+          <div>
+            <strong>Kostenloser Versand</strong><br>
+            <span style="color:var(--color-muted);font-size:0.8rem;">Ab 50€ Bestellwert nach Deutschland</span>
+          </div>
+        </div>
+        <div class="product-meta-item">
+          <span class="product-meta-icon">↩️</span>
+          <div>
+            <strong>30 Tage Rückgabe</strong><br>
+            <span style="color:var(--color-muted);font-size:0.8rem;">Einfache Rückgabe, kein Aufwand</span>
+          </div>
+        </div>
+        <div class="product-meta-item">
+          <span class="product-meta-icon">🔒</span>
+          <div>
+            <strong>Sichere Zahlung</strong><br>
+            <span style="color:var(--color-muted);font-size:0.8rem;">SSL-verschlüsselt · PayPal · Klarna</span>
+          </div>
+        </div>
+      </div>
+
+      {% if product.description != blank %}
+        <div class="product-description">
+          {{ product.description }}
+        </div>
+      {% endif %}
+    </div>
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Product Detail",
+  "settings": [],
+  "presets": [{ "name": "Product Detail" }]
+}
+{% endschema %}

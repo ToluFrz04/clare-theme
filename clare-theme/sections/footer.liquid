@@ -1,0 +1,94 @@
+<footer class="site-footer" role="contentinfo">
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <div class="footer-brand-logo">CLARÉ</div>
+        <p class="footer-brand-text">
+          {{ section.settings.brand_description }}
+        </p>
+        <div class="footer-socials">
+          {% if section.settings.instagram_url != blank %}
+            <a href="{{ section.settings.instagram_url }}" class="footer-social-link" aria-label="Instagram" target="_blank" rel="noopener">IG</a>
+          {% endif %}
+          {% if section.settings.tiktok_url != blank %}
+            <a href="{{ section.settings.tiktok_url }}" class="footer-social-link" aria-label="TikTok" target="_blank" rel="noopener">TK</a>
+          {% endif %}
+          {% if section.settings.pinterest_url != blank %}
+            <a href="{{ section.settings.pinterest_url }}" class="footer-social-link" aria-label="Pinterest" target="_blank" rel="noopener">PT</a>
+          {% endif %}
+        </div>
+      </div>
+
+      <div>
+        <h3 class="footer-col-title">Shop</h3>
+        <ul class="footer-links">
+          <li><a href="/collections/all">Alle Produkte</a></li>
+          <li><a href="/collections/neuheiten">Neuheiten</a></li>
+          <li><a href="/collections/sale">Sale</a></li>
+          <li><a href="/collections/bestseller">Bestseller</a></li>
+        </ul>
+      </div>
+
+      <div>
+        <h3 class="footer-col-title">Service</h3>
+        <ul class="footer-links">
+          <li><a href="/pages/versand">Versand & Lieferung</a></li>
+          <li><a href="/pages/rueckgabe">Rückgabe & Umtausch</a></li>
+          <li><a href="/pages/groessentabelle">Größentabelle</a></li>
+          <li><a href="/pages/kontakt">Kontakt</a></li>
+          <li><a href="/pages/faq">FAQ</a></li>
+        </ul>
+      </div>
+
+      <div>
+        <h3 class="footer-col-title">Rechtliches</h3>
+        <ul class="footer-links">
+          <li><a href="/policies/privacy-policy">Datenschutz</a></li>
+          <li><a href="/policies/terms-of-service">AGB</a></li>
+          <li><a href="/policies/refund-policy">Widerrufsrecht</a></li>
+          <li><a href="/pages/impressum">Impressum</a></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      <span>© {{ 'now' | date: '%Y' }} Claré. Alle Rechte vorbehalten.</span>
+      <span>Made with ♡ in Deutschland</span>
+    </div>
+  </div>
+</footer>
+
+{% schema %}
+{
+  "name": "Footer",
+  "settings": [
+    {
+      "type": "textarea",
+      "id": "brand_description",
+      "label": "Markenbeschreibung",
+      "default": "Zeitlose Mode für die moderne Frau. Kuratierte Styles, inspiriert von Pariser Eleganz — direkt zu dir nach Hause."
+    },
+    {
+      "type": "url",
+      "id": "instagram_url",
+      "label": "Instagram URL"
+    },
+    {
+      "type": "url",
+      "id": "tiktok_url",
+      "label": "TikTok URL"
+    },
+    {
+      "type": "url",
+      "id": "pinterest_url",
+      "label": "Pinterest URL"
+    }
+  ],
+  "blocks": [],
+  "presets": [
+    {
+      "name": "Footer"
+    }
+  ]
+}
+{% endschema %}

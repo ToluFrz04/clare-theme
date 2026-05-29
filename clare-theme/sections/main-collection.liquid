@@ -1,0 +1,45 @@
+<div class="collection-header">
+  <h1 class="section-title">{{ collection.title }}</h1>
+  {% if collection.description != blank %}
+    <p class="section-subtitle">{{ collection.description }}</p>
+  {% endif %}
+</div>
+
+<div class="container">
+  <div class="collection-toolbar">
+    <span class="collection-count">{{ collection.products_count }} Produkte</span>
+    <div class="collection-sort">
+      <select name="sort_by" id="SortBy">
+        <option value="manual">Empfohlen</option>
+        <option value="best-selling">Bestseller</option>
+        <option value="title-ascending">Name A–Z</option>
+        <option value="title-descending">Name Z–A</option>
+        <option value="price-ascending">Preis aufsteigend</option>
+        <option value="price-descending">Preis absteigend</option>
+        <option value="created-descending">Neueste zuerst</option>
+      </select>
+    </div>
+  </div>
+
+  <div class="product-grid">
+    {% for product in collection.products %}
+      {% render 'product-card', product: product %}
+    {% else %}
+      <p>Diese Kollektion ist noch leer.</p>
+    {% endfor %}
+  </div>
+
+  {% if paginate.pages > 1 %}
+    <div style="text-align:center;margin-top:3rem;">
+      {{ paginate | default_pagination }}
+    </div>
+  {% endif %}
+</div>
+
+{% schema %}
+{
+  "name": "Collection",
+  "settings": [],
+  "presets": [{ "name": "Collection" }]
+}
+{% endschema %}
