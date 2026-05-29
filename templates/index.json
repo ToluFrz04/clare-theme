@@ -1,0 +1,42 @@
+{
+  "sections": {
+    "hero": {
+      "type": "main-hero",
+      "settings": {
+        "eyebrow": "Neue Kollektion · Sommer 2025",
+        "title": "Mode, die Geschichten erzählt",
+        "subtitle": "Kuratierte Styles für die moderne Frau. Zeitlos, elegant, unverwechselbar.",
+        "btn_primary_label": "Kollektion entdecken",
+        "btn_primary_url": "/collections/all",
+        "btn_secondary_label": "Neuheiten",
+        "btn_secondary_url": "/collections/neuheiten"
+      }
+    },
+    "trust": {
+      "type": "trust-bar",
+      "settings": {}
+    },
+    "featured": {
+      "type": "featured-collection",
+      "settings": {
+        "eyebrow": "Kuratiert für dich",
+        "title": "Bestseller",
+        "subtitle": "Die beliebtesten Styles unserer Community",
+        "products_to_show": 8,
+        "show_view_all": true,
+        "view_all_label": "Alle Produkte ansehen"
+      }
+    },
+    "newsletter": {
+      "type": "newsletter",
+      "settings": {
+        "eyebrow": "Newsletter",
+        "title": "Bleib im Stil",
+        "subtitle": "Erhalte 10% Rabatt auf deine erste Bestellung und bleib über neue Kollektionen informiert.",
+        "placeholder": "Deine E-Mail-Adresse",
+        "btn_label": "Anmelden"
+      }
+    }
+  },
+  "order": ["hero", "trust", "featured", "newsletter"]
+}

@@ -1,0 +1,60 @@
+<section class="newsletter">
+  <div class="container">
+    <p class="section-eyebrow" style="color:rgba(255,255,255,0.5);">{{ section.settings.eyebrow }}</p>
+    <h2 class="newsletter-title">{{ section.settings.title }}</h2>
+    <p class="newsletter-subtitle">{{ section.settings.subtitle }}</p>
+
+    {% form 'customer', class: 'newsletter-form' %}
+      <input type="hidden" name="contact[tags]" value="newsletter">
+      <input
+        type="email"
+        name="contact[email]"
+        placeholder="{{ section.settings.placeholder }}"
+        required
+        autocomplete="email"
+      >
+      <button type="submit" class="btn btn-primary">
+        {{ section.settings.btn_label }}
+      </button>
+    {% endform %}
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Newsletter",
+  "settings": [
+    {
+      "type": "text",
+      "id": "eyebrow",
+      "label": "Kleiner Text oben",
+      "default": "Newsletter"
+    },
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Titel",
+      "default": "Bleib im Stil"
+    },
+    {
+      "type": "text",
+      "id": "subtitle",
+      "label": "Untertitel",
+      "default": "Erhalte 10% Rabatt auf deine erste Bestellung und bleib über neue Kollektionen informiert."
+    },
+    {
+      "type": "text",
+      "id": "placeholder",
+      "label": "Platzhaltertext",
+      "default": "Deine E-Mail-Adresse"
+    },
+    {
+      "type": "text",
+      "id": "btn_label",
+      "label": "Button Text",
+      "default": "Anmelden"
+    }
+  ],
+  "presets": [{ "name": "Newsletter" }]
+}
+{% endschema %}

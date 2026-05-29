@@ -1,0 +1,87 @@
+<section class="section">
+  <div class="container">
+    <div class="section-header">
+      {% if section.settings.eyebrow != blank %}
+        <p class="section-eyebrow">{{ section.settings.eyebrow }}</p>
+      {% endif %}
+      <h2 class="section-title">{{ section.settings.title }}</h2>
+      {% if section.settings.subtitle != blank %}
+        <p class="section-subtitle">{{ section.settings.subtitle }}</p>
+      {% endif %}
+    </div>
+
+    {% assign collection = collections[section.settings.collection] %}
+    {% if collection != blank %}
+      <div class="product-grid">
+        {% for product in collection.products limit: section.settings.products_to_show %}
+          {% render 'product-card', product: product %}
+        {% endfor %}
+      </div>
+    {% endif %}
+
+    {% if section.settings.show_view_all and collection != blank %}
+      <div style="text-align:center; margin-top:3rem;">
+        <a href="{{ collection.url }}" class="btn btn-dark">
+          {{ section.settings.view_all_label }}
+        </a>
+      </div>
+    {% endif %}
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Featured Collection",
+  "settings": [
+    {
+      "type": "text",
+      "id": "eyebrow",
+      "label": "Kleiner Text oben",
+      "default": "Kuratiert für dich"
+    },
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Abschnittstitel",
+      "default": "Bestseller"
+    },
+    {
+      "type": "text",
+      "id": "subtitle",
+      "label": "Untertitel",
+      "default": "Die beliebtesten Styles unserer Community"
+    },
+    {
+      "type": "collection",
+      "id": "collection",
+      "label": "Kollektion"
+    },
+    {
+      "type": "range",
+      "id": "products_to_show",
+      "min": 2,
+      "max": 12,
+      "step": 1,
+      "label": "Anzahl Produkte",
+      "default": 8
+    },
+    {
+      "type": "checkbox",
+      "id": "show_view_all",
+      "label": "\"Alle anzeigen\" Button zeigen",
+      "default": true
+    },
+    {
+      "type": "text",
+      "id": "view_all_label",
+      "label": "Button Text",
+      "default": "Alle Produkte ansehen"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Featured Collection"
+    }
+  ]
+}
+{% endschema %}
